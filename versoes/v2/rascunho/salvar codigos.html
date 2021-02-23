@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<body>
+
+  <form action="painel.php" method="POST">
+
+    <p id="laat" name="laat">assa</p>
+    <input type=text required name='txtstart' id='txtstart' style='width:150px' value=''>
+
+    <p id="loong">loong</p>
+    <button type="submit">enviar</button>
+  </form>
+
+  <button onclick="getLocation()">Clique Aqui</button>
+
+  <script>
+
+  var x = document.getElementById("demo");
+  var a = document.getElementById("laat");
+  function getLocation()
+    {
+    if (navigator.geolocation)
+      {
+      navigator.geolocation.watchPosition(showPosition);
+      }
+    else{x.innerHTML="O seu navegador não suporta Geolocalização.";}
+    }
+  function showPosition(position)
+    {
+    document.getElementById('txtstart').value = position.coords.latitude + position.coords.longitude;
+    $(document).ready(function() {
+      window.document.forms[0].submit();
+  });
+    }
+
+
+
+  </script>
+ 
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#ajax').submit(function(){
+        var dados = $( this ).serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "painel.php",
+            data: dados,
+            success: function( data )
+            {
+                alert( data );
+            }
+        });
+
+        return false;
+    });
+});
+
+</script>
+
+
+
+lat_file = open('lat.txt', 'r')
+long_file = open('long.txt', 'r')
+
+latitude = lat_file.read()
+longitude = long_file.read()
+
+
+lat_file.close()
+long_file.close()
+
+
+
+
+
+
+<?php
+
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
+
+
+
+
+$dados = "\n$latitude $longitude";
+
+$fp = fopen('data.txt', 'a');
+
+fwrite($fp, $dados);
+
+fclose($fp);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Painel de Controle</title>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="5; URL=https://a514e110b6b5.ngrok.io/painel.php" />
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7aXtB83ADGIuD8Da7uJR3ZiPInQ1oVgY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+
+
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: -18.9687778, lng:  };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+    </script>
+
+
+</head>
+<body>
+
+  <h3>Localização do seu auto</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+</body>
+</html>
+
+
+ <?php
+
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
+
+
+
+
+$dados = "\n$latitude $longitude";
+
+$fp = fopen('data.txt', 'a');
+
+fwrite($fp, $dados);
+
+fclose($fp);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Painel de Controle</title>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="5; URL=https://a514e110b6b5.ngrok.io/painel.php" />
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7aXtB83ADGIuD8Da7uJR3ZiPInQ1oVgY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+
+
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: -18.9687778, lng:  };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+    </script>
+
+
+</head>
+<body>
+
+  <h3>Localização do seu auto</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+</body>
+</html>
+
+
+ 
+
+
+ #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os 
+from time import sleep
+import shutil, tempfile
+
+
+# quantidade de linhas latitude
+
+file_lat = open('hist_lat.txt', 'r')
+linhas_lat = file_lat.readlines()
+
+quant_linhas_lat = len(linhas_lat)
+
+print(quant_linhas_lat)
+
+primeira_lat = 1
+proxima_lat = 2
+
+while quant_linhas_lat > 1:
+  quant_linhas_lat = quant_linhas_lat - 1
+  print quant_linhas_lat
+
+  valor_lat_linha = linhas_lat[primeira_lat:proxima_lat]
+
+  primeira_lat = primeira_lat + 1
+  proxima_lat = proxima_lat + 1
+  print(valor_lat_linha)
+  ############################################
+
+  with open('painel.txt', 'r') as arquivo, \
+       tempfile.NamedTemporaryFile('w', delete=False) as out:
+      for index, linha in enumerate(arquivo, start=1):
+          if index == 49: # linha 2, mudar o conteúdo
+              out.write('\n        const uluru = { lat: %s, lng: };\n'%(valor_lat_linha))
+          else: # não é linha 2, escreve a linha sem modificação
+              out.write(linha)
+
+  # move o arquivo temporário para o original
+  shutil.move(out.name, 'painel.txt')
+
+
+file_lat.close()
+
+###### quantidade de linhas longitude
+
+file_long = open('hist_long.txt', 'r')
+linhas_long = file_long.readlines()
+
+quant_linhas_long = len(linhas_long)
+
+print(quant_linhas_long)
+
+primeira_long = 1
+proxima_long = 2
+
+while quant_linhas_long > 1:
+  quant_linhas_long = quant_linhas_long - 1
+  print quant_linhas_long
+
+  valor_long_linha = linhas_long[primeira_long:proxima_long]
+
+  primeira_long = primeira_long + 1
+  proxima_long = proxima_long + 1
+  print(valor_long_linha)
+
+  with open('painel.txt', 'r') as arquivo, \
+       tempfile.NamedTemporaryFile('w', delete=False) as out:
+      for index, linha in enumerate(arquivo, start=1):
+          if index == 49: # linha 2, mudar o conteúdo
+              out.write('\n        const uluru = { lat: %s, lng: %s };\n'%(valor_lat_linha, valor_long_linha))
+          else: # não é linha 2, escreve a linha sem modificação
+              out.write(linha)
+
+  # move o arquivo temporário para o original
+  shutil.move(out.name, 'painel.txt')
+
+
+
+file_long.close()
+
+
+
+
+
+

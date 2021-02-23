@@ -1,0 +1,67 @@
+<?php 
+
+
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Historico</title>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="60; URL=https://96f0533311a2.ngrok.io/historico.php" />
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7aXtB83ADGIuD8Da7uJR3ZiPInQ1oVgY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+
+
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+
+    <script>
+
+       
+      function initMap() {
+        // The location of Uluru
+
+
+
+
+        /* The width is the width of the web page */
+        const Centro = { lat: -18.9787746, lng: -48.2704809 }; const map = new google.maps.Map(document.getElementById("map"), {zoom: 15, center: Centro,});
+        const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+        /* The width is the width of the web page */
+
+
+
+
+
+      } 
+
+
+
+    </script>
+
+
+</head>
+<body>
+
+  <h3><a href="painel.php">Localização do seu auto</a></h3>
+  <h3><a href="historico.php">Histórico de movimentação</a></h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+</body>
+</html>
